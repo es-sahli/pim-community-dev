@@ -55,10 +55,11 @@ class MassEditFormResolver
         $choices = [];
         $availableOperations = $this->operationRegistry->getAllByGridNameAndGroup($gridName, $operationGroup);
         foreach (array_keys($availableOperations) as $alias) {
-            $choices[$alias] = sprintf('pim_enrich.mass_edit_action.%s.label', $alias);
+            $key = sprintf('pim_enrich.mass_edit_action.%s.label', $alias);
+            $choices[$key] = $alias;
         }
 
-        return $this->formFactory->create($this->chooseActionFormType, null, ['operations' => $choices]);
+        return $this->formFactory->create(get_class($this->chooseActionFormType), null, ['operations' => $choices]);
     }
 
     /**
@@ -89,7 +90,7 @@ class MassEditFormResolver
 
         $operation->initialize();
 
-        $form = $this->formFactory->create($this->chooseActionFormType, $operation);
+        $form = $this->formFactory->create(get_class($this->chooseActionFormType), $operation);
         $form->add('operation', $operation->getFormType(), $operation->getFormOptions());
 
         return $form;

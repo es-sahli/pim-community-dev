@@ -76,7 +76,7 @@ class AddToVariantGroupType extends AbstractType
                 'expanded'    => false,
                 'choices'     => $options['groups'],
                 'select2'     => true,
-                'empty_value' => '',
+                'placeholder' => '',
             ]
         );
     }
