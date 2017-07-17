@@ -177,7 +177,7 @@ services:
             - { name: form.type, alias: pim_enrich_mass_edit_common_attributes }
 
     pim_enrich.form.type.add_to_groups:
-        class: %pim_enrich.form.type.add_to_groups.class%
+        class: '%pim_enrich.form.type.add_to_groups.class%'
         arguments:
             - '@pim_catalog.repository.group'
             - '%pim_catalog.entity.group.class%'
