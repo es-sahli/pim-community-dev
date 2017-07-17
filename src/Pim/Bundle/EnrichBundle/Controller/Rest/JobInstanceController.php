@@ -22,6 +22,7 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Validator\Constraints\Valid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 /**
@@ -417,7 +418,7 @@ class JobInstanceController
             }
         }
 
-        $globalViolations = $this->validator->validate($jobInstance, ['Default']);
+        $globalViolations = $this->validator->validate($jobInstance, new Valid(), ['Default']);
         if ($globalViolations->count() > 0) {
             foreach ($globalViolations as $error) {
                 $errors[$error->getPropertyPath()] = $error->getMessage();
