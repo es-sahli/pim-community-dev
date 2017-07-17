@@ -40,7 +40,7 @@ class AddToGroupsTypeSpec extends ObjectBehavior
         GroupInterface $progressiveGroup
     ) {
         $groupRepository->getAllGroupsExceptVariant()->willReturn([$minimalGroup, $progressiveGroup]);
-        $this->setDefaultOptions($resolver, []);
+        $this->configureOptions($resolver);
 
         $resolver->setDefaults(
             [

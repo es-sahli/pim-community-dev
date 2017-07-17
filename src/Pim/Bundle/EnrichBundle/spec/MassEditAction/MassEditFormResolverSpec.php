@@ -38,10 +38,10 @@ class MassEditFormResolverSpec extends ObjectBehavior
             'erase'     => $eraseOperation
         ]);
 
-        $formFactory->create($chooseActionFormType, null, [
+        $formFactory->create(get_class($chooseActionFormType->getWrappedObject()), null, [
             'operations' => [
-                'duplicate' => 'pim_enrich.mass_edit_action.duplicate.label',
-                'erase'     => 'pim_enrich.mass_edit_action.erase.label'
+                'pim_enrich.mass_edit_action.duplicate.label' => 'duplicate',
+                'pim_enrich.mass_edit_action.erase.label' => 'erase'
             ]
         ])->shouldBeCalled();
 
@@ -63,7 +63,7 @@ class MassEditFormResolverSpec extends ObjectBehavior
 
         $operationRegistry->get($operationAlias)->willReturn($operation);
 
-        $formFactory->create($chooseActionFormType, $operation)->willReturn($form);
+        $formFactory->create(get_class($chooseActionFormType->getWrappedObject()), $operation)->willReturn($form);
         $form->add('operation', 'add_to_group_type', [])->shouldBeCalled();
 
         $this->getConfigurationForm($operationAlias)->shouldReturn($form);
@@ -84,7 +84,7 @@ class MassEditFormResolverSpec extends ObjectBehavior
 
         $operationRegistry->get($operationAlias)->shouldNotBeCalled();
 
-        $formFactory->create($chooseActionFormType, $operation)->willReturn($form);
+        $formFactory->create(get_class($chooseActionFormType->getWrappedObject()), $operation)->willReturn($form);
         $form->add('operation', 'add_to_group_type', [])->shouldBeCalled();
 
         $this->getConfigurationForm($operationAlias, $operation)->shouldReturn($form);

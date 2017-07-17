@@ -40,7 +40,7 @@ class MassEditChooseActionTypeSpec extends ObjectBehavior
             ]
         )->shouldBeCalled();
 
-        $this->setDefaultOptions($resolver);
+        $this->configureOptions($resolver);
     }
 
     function it_gets_the_form_type_block_prefix()

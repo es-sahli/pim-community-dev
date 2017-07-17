@@ -93,7 +93,7 @@ abstract class AbstractMassEditController
         $queryParams = $this->getQueryParams($request);
 
         if ($request->isMethod('POST')) {
-            $form->submit($request);
+            $form->handleRequest($request);
 
             if ($form->isValid()) {
                 $data = $form->getData();
@@ -175,7 +175,7 @@ abstract class AbstractMassEditController
         $configureTemplate = $this->getPerformOperationTemplate($operationAlias);
 
         $form->remove('operationAlias');
-        $form->submit($request);
+        $form->handleRequest($request);
 
         $queryParams = $this->getQueryParams($request);
 

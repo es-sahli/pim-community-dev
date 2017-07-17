@@ -26,7 +26,7 @@ class SetAttributeRequirementsTypeSpec extends ObjectBehavior
 
     function it_sets_default_options(OptionsResolver $resolver)
     {
-        $this->setDefaultOptions($resolver, []);
+        $this->configureOptions($resolver);
 
         $resolver->setDefaults(
             [
